@@ -1,0 +1,47 @@
+<%- include('./layouts/header') %> 
+<section>
+    <div class="row">
+        <div class="col">
+            <h4><%= menuData[0] %> 식당</h4>
+            <script>
+                const menuName = "<%= menuData[0] %>";
+            </script>
+            <br>
+            <div id="map" style="width:90%;height:350px;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=<%=apikey%>&libraries=services"></script>
+            <br>
+            <p><%= menuData[1] %></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="col-movie">
+            <h4>오늘의 추천 영화</h4>
+            <br>
+            <ul>
+                <li>
+                    <% let imageFound = false; %>  <!-- 이미지가 발견되었는지 여부를 추적하는 변수 -->
+                    <% posterURI.forEach(function(imageUrl) { %>
+                        <% if (!imageFound && imageUrl && imageUrl.length > 0) { %>  <!-- 유효한 URL인 경우 -->
+                            <img src="<%= imageUrl %>" alt="Movie Poster" style="width: 200px; margin: 10px;">
+                            <% imageFound = true; %>  <!-- 이미지가 발견되었음을 표시 -->
+                        <% } %>
+                    <% }); %>
+                </li>
+                <li> <h5 style="font-weight: bold;"><%= movieData[0] %> </h5> </li>
+                <li> <p>줄거리 : <%= movieData[1] %> </p> </li>
+                <li> <p>감독 : <%= movieData[2] %></p> </li>
+                <li> <p>배우 : <%= movieData[3] %>,<%= movieData[4] %> 등 </p> </li>
+                <li> <p>장르 : <%= movieData[5] %> </p> </li>
+                <li> <p>관람등급 : <%= movieData[6] %> </p> </li>
+                <li> <p>박스오피스 순위 : <%= movieData[7] %>위 </p> </li>
+                <li> <p>박스오피스 순위 : <%= movieData[8] %> </p> </li>
+                <li> <p>누적관객수 : (<%= day %> 기준) : <%= Number(movieData[9]).toLocaleString() %>명 </p> </li>
+            </ul>
+            <br>
+            <figcaption class="blockquote-footer">
+                <cite>데이터 출처: 영화진흥위원회, 한국영화데이터베이스</cite>
+            </figcaption>
+        </div>
+    </div>
+</section>
+<%- include('./layouts/footer') %> 

@@ -1,0 +1,125 @@
+@media (max-width: 768px) {  
+
+  #inputNamePassword label { /* 닉네임, 비밀번호 입력칸 간격 */
+      display: block; 
+  }
+
+  #tem-img { /* 온도, 이미지 칸 간격 */
+    padding-right : 3vw !important;
+    padding-left : 3vw !important;
+  }
+
+  .flag-img { /* 국기 이미지 */
+    width: 4vw !important;  
+    height: auto !important;  
+  }
+
+  #about-sns li { /* sns 아이콘 간격 */
+    padding-right: 3vw !important;;
+  }
+}
+
+body {
+  background-color: #F9F9F9;
+}
+
+.main-section .row div, #col-movie, #inputGuestbook {
+  background-color: white;
+}
+
+/* 마우스 대면 글 색깔 변함 */
+.nav-item:hover .nav-link {
+  color: blue !important;
+} 
+
+.container .col {
+  margin : 2% 3% 2% 3%; /* 위 | 오른쪽 | 아래 | 왼쪽 */
+  border: 1px solid #E2E2E2 !important;
+  border-radius : .8em;
+  animation: fade_up 2s;
+}
+
+
+ @keyframes fade_up {
+  0% { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 웹사이트 소개글 제목 디자인 */
+#about-title {
+  font-weight: bolder;
+  background: #000428;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 기술, api 소개 ul 디자인 */
+#about-technology ul {
+  list-style-image: url('/images/arrow-right-short.svg'); /* 이미지 마커 */
+}
+
+/* sns 아이콘 간격 */
+#about-sns li {
+  padding-right: 1vw;
+}
+
+/* 미세먼지 표 간격 */
+#viewair td {
+  padding-right: 3vw;
+}
+
+ul {
+  list-style:none;
+}
+
+.flag-img {
+  width: 1vw;  /* 화면 크기의 1%만큼 이미지 크기 설정 */
+  height: auto;  /* 비율에 맞게 높이 자동 조정 */
+}
+
+/* 미세먼지 글씨 조건문 */
+.good {
+  color: green; 
+}
+
+.normal {
+  color: khaki; 
+}
+
+.bad {
+  color: orange; 
+}
+
+.very-bad {
+  color: red; 
+}
+
+#inputGuestbook {
+  border: 1px solid #E2E2E2 !important;
+  border-radius : .8em;
+}
+
+#delbutton {
+  border:none;  /* 삭제 버튼 테두리 제거 */
+}
+
+/* .item-container(방명록 닉네임, 날짜)를 flexbox로 설정 */
+#item-container {
+  font-size : 15px;
+  display: flex;
+  justify-content: space-between; /* 항목 사이에 공간을 배분 */
+  align-items: center; /* 세로로 가운데 정렬 */
+}
+
+#createdAt {
+  margin-left: auto; /* createdAt을 오른쪽으로 밀기 */
+}
+
+/* 방명록 내용 출력 div */
+#viewarticle {
+  margin-top: 1.3%;
+  font-size : 17px;
+}

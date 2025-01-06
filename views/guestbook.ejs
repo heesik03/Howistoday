@@ -1,0 +1,51 @@
+<%- include('./layouts/header') %> 
+<section>
+    <div id="inputGuestbook">
+        <h4>방명록</h4>
+        <p>웹사이트에 대한 다양한 의견을 남겨주세요</p>
+        <smail style="font-weight: bold;">*욕설, 비하, 차별적인 발언 등 타인을 불쾌하게 하는 내용이나 법에 저촉되는 내용은 삭제될 수 있습니다.</smail>
+        <br>
+        <br>
+        <form action="/guestbook" method="POST" onsubmit="handleFormSubmit(event)">
+            <div id="inputNamePassword">
+                <label for="name">닉네임:</label>
+                <input type="text" name="name" maxlength="10" placeholder="익명의 사람" maxlength="15" autocomplete="off">
+                
+                <label for="password">비밀번호:</label>
+                <input type="password" name="password" size="8" placeholder="4~8자" required minlength="4" maxlength="8">
+            </div>
+            <br>
+            <textarea id="article" class="form-control" name="article" rows="5" placeholder="방명록 내용을 작성해 주세요." required maxlength="300"></textarea>
+            <span id="charCount">0</span>/300</div>
+
+            <button type="submit" class="btn btn-secondary">작성</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="viewGuestbook">
+        <ul>
+            <% guestbookData.reverse().forEach(function(item) { %>
+                <li>
+                    <div id="item-container">
+                        <b><%= item.name %></b>
+                        <span id="createdAt"><%= item.createdAt %></span>
+                    </div>
+                </li>
+                <li>
+                    <p id="viewarticle"><%= item.article %> </p>
+                </li>
+                <li>
+                    <form onsubmit="deleteGuestbook(event, '<%= item.id %>')">
+                        <label for="delpassword-<%= item.id %>">비밀번호 </label>
+                        <input type="password" id="delpassword-<%= item.id %>" name="delpassword" size="8" placeholder="4~8자" required minlength="4" maxlength="8">
+                        <button type="submit">X</button>          
+                    </form>
+                </li>
+                <hr>
+            <% }); %>
+        </ul>
+    </div>
+</section>
+<script src="/javascript/guestbook_script.js"></script>
+<%- include('./layouts/footer') %>
