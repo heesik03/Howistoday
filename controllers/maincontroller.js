@@ -9,11 +9,10 @@ const airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesure
 const pm25airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM25&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
 const { DateTime } = require('luxon');
 let base_date = DateTime.now().toFormat('yyyyMMdd');
-let base_time = DateTime.now().toFormat('HHmm');  // 현재 시간을 'HH:mm' 형식으로 출력
+let base_time = DateTime.now().toFormat('HHmm');  // 현재 시간을 'HHmm' 형식으로 출력
 let addressInfo = "서울";
 let gridX = 60;
 let gridY = 127;
-console.log(base_date)
 
 const cities = {
     서울: 'seoul',
