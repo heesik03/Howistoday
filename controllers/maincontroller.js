@@ -8,11 +8,13 @@ const bankapiURI = `http://ecos.bok.or.kr/api/KeyStatisticList/${encodeURICompon
 const airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
 const pm25airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM25&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
 const today = new Date(); // 오늘의 날짜
-const base_date = today.toLocaleDateString('en-CA').replace(/-/g, ''); // 'yyyy-mm-dd' → 'yyyymmdd'
-let base_time = today.getHours().toString().padStart(2, '0') + today.getMinutes().toString().padStart(2, '0'); // 오늘 시간 (HHmm) 형식
+const { DateTime } = require('luxon');
+let base_date = DateTime.now().toFormat('yyyyMMdd');
+let base_time = DateTime.now().toFormat('HHmm');  // 현재 시간을 'HH:mm' 형식으로 출력
 let addressInfo = "서울";
 let gridX = 60;
 let gridY = 127;
+console.log(base_date)
 
 const cities = {
     서울: 'seoul',
@@ -99,7 +101,10 @@ const weathercities = [
             axios.get(pm25airapiURI),
             axios.get(bankapiURI),
         ]);
-        console.log(airapiURI);
+        console.log("기상청 : " + weatherapiURI + queryParams);
+        console.log("미세먼지 : " + airapiURI);
+        console.log("초미세먼지 : " + pm25airapiURI);
+
         // 날씨 정보
         const weatherData = weatherResponse.data;
         if (!weatherData.response || !weatherData.response.body || !weatherData.response.body.items || !weatherData.response.body.items.item) {
