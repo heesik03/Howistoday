@@ -7,7 +7,6 @@ const weatherapiURI = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/
 const bankapiURI = `http://ecos.bok.or.kr/api/KeyStatisticList/${encodeURIComponent(bankKey)}/json/kr/1/10`
 const airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
 const pm25airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM25&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
-const today = new Date(); // 오늘의 날짜
 const { DateTime } = require('luxon');
 let base_date = DateTime.now().toFormat('yyyyMMdd');
 let base_time = DateTime.now().toFormat('HHmm');  // 현재 시간을 'HH:mm' 형식으로 출력
