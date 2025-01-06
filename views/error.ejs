@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-</head>
-<body>
-  <h1><%= title %></h1>
-  <p>오류가 발생했습니다. 새로고침을 하거나 잠시 후 다시 접속해주세요</p>
-  <p>오류 제보 : cka8701@gmail.com </p>
-  <img src="/images/sorry.png" class="img-fluid" alt="sorry">
-</body>
-</html>
+<%- include('./layouts/header') %> 
+  <section>
+    <h1><%= title %></h1>
+    <p>오류가 발생했습니다. 새로고침을 하거나 잠시 후 다시 접속해주세요</p>
+    <p>문의 : cka8701@gmail.com </p>
+    <img src="/images/sorry.png" class="img-fluid" alt="sorry">
+  </section>
+  <%- include('./layouts/footer') %> 

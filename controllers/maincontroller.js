@@ -13,6 +13,7 @@ let base_time = DateTime.now().toFormat('HHmm');  // 현재 시간을 'HHmm' 형
 let addressInfo = "서울";
 let gridX = 60;
 let gridY = 127;
+console.log(DateTime.now());
 
 const cities = {
     서울: 'seoul',
