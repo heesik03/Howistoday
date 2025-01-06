@@ -99,7 +99,7 @@ const weathercities = [
             axios.get(pm25airapiURI),
             axios.get(bankapiURI),
         ]);
-        console.log(weatherapiURI + queryParams);
+        console.log(airapiURI);
         // 날씨 정보
         const weatherData = weatherResponse.data;
         if (!weatherData.response || !weatherData.response.body || !weatherData.response.body.items || !weatherData.response.body.items.item) {
