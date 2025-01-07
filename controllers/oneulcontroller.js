@@ -14,7 +14,6 @@ let menurandomInt = 0;
 const getMeauAndMoive = async (req, res) => {
     try {
         const base_date = DateTime.now().setZone('Asia/Seoul').minus({ days: 1 }).toFormat('yyyyMMdd'); // 오늘 날짜에서 하루를 뺀 뒤 형식 변환환
-        console.log("base_date : " + base_date);
         const koficapiURI = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${kofickey}&targetDt=${base_date}`;
 
         function getDailyRandomNumber() {
@@ -25,7 +24,7 @@ const getMeauAndMoive = async (req, res) => {
             movierandomInt = parseInt(hash, 16) % 10; 
             menurandomInt = parseInt(hash, 16) % 60; 
         
-            console.log(today.toISO() + " " + "영화 랜덤변수: " + movierandomInt + "메뉴 랜덤변수: " + menurandomInt);
+            console.log(today.toISO() + " " + "영화 랜덤변수: " + movierandomInt + " 메뉴 랜덤변수: " + menurandomInt);
         }
         getDailyRandomNumber();
 
