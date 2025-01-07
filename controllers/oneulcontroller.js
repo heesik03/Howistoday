@@ -18,16 +18,14 @@ const getMeauAndMoive = async (req, res) => {
         const koficapiURI = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${kofickey}&targetDt=${base_date}`;
 
         function getDailyRandomNumber() {
-            const today = new Date();
-            console.log(today);
-            const dateString = today.toISOString().slice(0, 10);
-        
-            // 날짜를 해시로 변환 (SHA256 해시를 사용)
-            const hash = crypto.createHash('sha256').update(dateString).digest('hex');
+            const today = DateTime.now().setZone('Asia/Seoul'); // Luxon을 사용하여 현재 날짜와 시간 가져오기
+            const dateString = today.toISODate();  // "yyyy-MM-dd" 형식의 날짜 문자열을 가져오기
+            const hash = crypto.createHash('sha256').update(dateString).digest('hex');  // 날짜 문자열을 해시로 변환 (SHA256 해시 사용)
             
-            // 해시값을 숫자로 변환 (16진수를 10진수로 변환) 및 범위 설정
             movierandomInt = parseInt(hash, 16) % 10; 
             menurandomInt = parseInt(hash, 16) % 60; 
+        
+            console.log(today.toISO() + " " + "영화 랜덤변수: " + movierandomInt + "메뉴 랜덤변수: " + menurandomInt);
         }
         getDailyRandomNumber();
 
