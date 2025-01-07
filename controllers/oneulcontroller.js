@@ -14,15 +14,20 @@ let menurandomInt = 0;
 const getMeauAndMoive = async (req, res) => {
     try {
         const base_date = DateTime.now().setZone('Asia/Seoul').minus({ days: 1 }).toFormat('yyyyMMdd'); // 오늘 날짜에서 하루를 뺀 뒤 형식 변환환
+        console.log("base_date : " + base_date);
         const koficapiURI = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${kofickey}&targetDt=${base_date}`;
 
-        function getDailyRandomNumber() {  // 하루마다 바뀌는 난수를 생성하는 함수
-            const today = DateTime.now().setZone('Asia/Seoul').toISODate(); // yyyy-MM-dd 형식
-            const hash = crypto.createHash('sha256').update(today).digest('hex'); // 날짜를 해시로 변환 (SHA256 해시를 사용)
+        function getDailyRandomNumber() {
+            const today = new Date();
+            console.log(today);
+            const dateString = today.toISOString().slice(0, 10);
+        
+            // 날짜를 해시로 변환 (SHA256 해시를 사용)
+            const hash = crypto.createHash('sha256').update(dateString).digest('hex');
             
             // 해시값을 숫자로 변환 (16진수를 10진수로 변환) 및 범위 설정
-            const movierandomInt = parseInt(hash, 16) % 10; 
-            const menurandomInt = parseInt(hash, 16) % 60;
+            movierandomInt = parseInt(hash, 16) % 10; 
+            menurandomInt = parseInt(hash, 16) % 60; 
         }
         getDailyRandomNumber();
 
