@@ -1,5 +1,6 @@
 require("dotenv").config();  // env 연결
 const axios = require('axios');
+const { DateTime } = require('luxon');
 const serviceKey = process.env.WEATHER_KEY;  // 환경 변수로 가져오기
 const bankKey = process.env.BANKOFKOREA_KEY;
 const kakaoKey = process.env.KAKAO_KEY;
@@ -7,9 +8,6 @@ const weatherapiURI = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/
 const bankapiURI = `http://ecos.bok.or.kr/api/KeyStatisticList/${encodeURIComponent(bankKey)}/json/kr/1/10`
 const airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
 const pm25airapiURI = `http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?itemCode=PM25&dataGubun=HOUR&pageNo=1&numOfRows=1&returnType=json&serviceKey=${encodeURIComponent(serviceKey)}` 
-const { DateTime } = require('luxon');
-let base_date = DateTime.now().setZone('Asia/Seoul').toFormat('yyyyMMdd');
-let base_time = DateTime.now().setZone('Asia/Seoul').toFormat('HHmm');
 let addressInfo = "서울";
 let gridX = 60;
 let gridY = 127;
@@ -59,6 +57,9 @@ const weathercities = [
   const getAPIDate = async (req, res) => {
     const { longitude, latitude } = req.query;
     const kakaoapiURI = `https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${longitude}&y=${latitude}`;
+
+    let base_date = DateTime.now().setZone('Asia/Seoul').toFormat('yyyyMMdd');
+    let base_time = DateTime.now().setZone('Asia/Seoul').toFormat('HHmm');
     
     // 기상청 API 오류 대처용 코드
     if (parseInt(base_time.slice(0, 2)) === 0 && parseInt(base_time.slice(2, 4)) <= 8) {
