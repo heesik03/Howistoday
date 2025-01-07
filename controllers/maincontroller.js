@@ -13,7 +13,6 @@ let base_time = DateTime.now().setZone('Asia/Seoul').toFormat('HHmm');
 let addressInfo = "서울";
 let gridX = 60;
 let gridY = 127;
-console.log(base_date + " " + base_time);
 
 const cities = {
     서울: 'seoul',
@@ -104,7 +103,7 @@ const weathercities = [
         // 날씨 정보
         const weatherData = weatherResponse.data;
         if (!weatherData.response || !weatherData.response.body || !weatherData.response.body.items || !weatherData.response.body.items.item) {
-            throw new Error("API 응답 오류: 유효한 날씨 데이터가 없습니다.");
+            throw new Error("API 응답 오류: 유효한 날씨 데이터가 없습니다. " + weatherapiURI + queryParams);
         }
         let weatherInfo = weatherData.response.body.items.item;
         weatherInfo = weatherInfo.filter(item => allowedCategories.includes(item.category)); // allowedCategories 배열의 값으로 배열 정리 
@@ -112,7 +111,7 @@ const weathercities = [
         // 미세먼지 정보
         const airInfo = airResponse.data.response.body.items;
         if (!airInfo || airInfo.length === 0) {
-            throw new Error("API 응답 오류: 유효한 미세먼지 데이터가 없습니다.");
+            throw new Error("API 응답 오류: 유효한 미세먼지 데이터가 없습니다. " + airapiURI);
         }
         let cityAirValue = airInfo.find(item => item[aircities] !== undefined)[aircities];
         if(cityAirValue===null) {
@@ -122,7 +121,7 @@ const weathercities = [
         // 초미세먼지 정보
         const pm25airInfo = pm25Response.data.response.body.items;
         if (!pm25airInfo || pm25airInfo.length === 0) {
-            throw new Error("API 응답 오류: 유효한 초미세먼지 데이터가 없습니다.");
+            throw new Error("API 응답 오류: 유효한 초미세먼지 데이터가 없습니다. " + pm25airapiURI);
         }
         let pm25cityAirValue = pm25airInfo.find(item => item[aircities] !== undefined)[aircities];
         if(pm25cityAirValue===null) {
@@ -132,7 +131,7 @@ const weathercities = [
         // 한국은행 정보
         const bankInfo = bankResponse.data.KeyStatisticList.row;
         if (!bankInfo || bankInfo.length === 0) {
-            throw new Error("API 응답 오류: 유효한 한국은행 데이터가 없습니다.");
+            throw new Error("API 응답 오류: 유효한 한국은행 데이터가 없습니다. " + bankapiURI);
         }
 
         // 템플릿에 데이터 전달
